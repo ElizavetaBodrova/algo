@@ -131,7 +131,7 @@ public class BoerraMurraMain {
     public static void findBoerMoor(String line, String pattern){
         int pLength=pattern.length();
         int sLength=line.length();
-        Map<Character,Integer> sigma1=sigma1(line);
+        Map<Character,Integer> sigma1=sigma1(pattern);
         int[] sigma2=sigma2(line,pattern);
         System.out.println("Position");
         int i=pLength-1;
@@ -145,11 +145,13 @@ public class BoerraMurraMain {
                 j++;
                 i++;
             }
-            /*if(i!=0){
-                i+=Math.max(sigma1.get(line.charAt(i-1)),sigma2[j])-1;
-            }else{*/
-                i+=Math.max(sigma1.get(line.charAt(i)),sigma2[j]);
-           // }
+            Integer temp=sigma1.get(line.charAt(i));
+            if(temp!=null) {
+                i += Math.max(temp, sigma2[j])-1;
+            }
+            else{
+                i += Math.max(pLength-1, sigma2[j])-1;
+            }
 
         }
     }

@@ -62,7 +62,7 @@ public class RabinKarp {
                     match = false;
                     break;
                 }
-            }
+            }      
             if(match) {
                 result.add(i);
             }
