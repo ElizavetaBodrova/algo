@@ -37,7 +37,13 @@ public class RabinKarp {
             hashPattern = (hashPattern * basement + pattern.charAt(i)) % divider;
             multiplier = (multiplier * basement) % divider;
         }
+        if(hashText<0){
+            hashText=divider+hashText;
+        }
 
+        if(hashPattern<0){
+            hashText=divider+hashText;
+        }
         for(i = 0; i < textLength - patternLength; ++i) {
             if(hashText == hashPattern) {
                 boolean match = true;
@@ -54,6 +60,9 @@ public class RabinKarp {
                 }
             }
             hashText = (basement * (hashText - multiplier * text.charAt(i)) + text.charAt(i + patternLength) + divider) % divider;
+            if(hashText<0){
+                hashText=divider+hashText;
+            }
         }
         if(hashText == hashPattern) {
             boolean match = true;
